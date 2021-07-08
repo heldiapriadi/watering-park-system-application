@@ -23,8 +23,4 @@ public class BackgroundTask extends Worker {
 
         return Result.success();
     }
-
-    void sendNotification(String title, String message) {
-
-    }
 }
