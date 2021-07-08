@@ -1,6 +1,7 @@
 package com.example.smartwateringpark.database;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -25,6 +26,12 @@ public class ReportRepository {
     // Observed LiveData will notify the observer when the data has changed.
     public LiveData<List<Report>> getAllReports() {
         return AllReports;
+    }
+
+    public LiveData<List<Report>> getAllFilterReports(long fromDate, long toDate) {
+        Log.d("TESTTT","BEBAS APA AJA 2");
+        Log.d("TESTTT","fromDate: "+String.valueOf(fromDate)+" ToDate: "+String.valueOf(toDate));
+        return reportDao.getFilterReports(fromDate,toDate);
     }
 
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures

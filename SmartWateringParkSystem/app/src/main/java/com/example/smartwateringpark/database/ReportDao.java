@@ -15,4 +15,7 @@ public interface ReportDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Report report);
+
+    @Query("SELECT * FROM report WHERE timestamp > :fromDate and timestamp < :toDate ORDER BY timestamp ASC")
+    LiveData<List<Report>> getFilterReports(long fromDate, long toDate);
 }

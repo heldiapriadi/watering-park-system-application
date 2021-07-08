@@ -1,6 +1,8 @@
 package com.example.smartwateringpark.model;
 
 import android.app.Application;
+import android.util.Log;
+
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
@@ -24,7 +26,13 @@ public class ReportViewModel extends AndroidViewModel {
         return AllReports;
     }
 
-    void insert(Report report){
+    public LiveData<List<Report>> getAllFilterReports(long fromDate, long toDate) {
+        Log.d("TESTTT","BEBAS APA AJA");
+        Log.d("TESTTT","fromDate: "+String.valueOf(fromDate)+" ToDate: "+String.valueOf(toDate));
+        return reportRepository.getAllFilterReports(fromDate,toDate);
+    }
+
+    public void insert(Report report){
         reportRepository.insert(report);
     }
 }

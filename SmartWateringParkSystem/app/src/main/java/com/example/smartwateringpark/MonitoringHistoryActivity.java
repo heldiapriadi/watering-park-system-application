@@ -15,9 +15,12 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentContainerView;
 
+import com.example.smartwateringpark.ui.ListMonitoringFragment;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
 
 public class MonitoringHistoryActivity extends AppCompatActivity {
 
@@ -37,6 +40,7 @@ public class MonitoringHistoryActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setTitle("Monitoring History");
         }
+        updateLabel();
 
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -48,7 +52,6 @@ public class MonitoringHistoryActivity extends AppCompatActivity {
             }
         };
         date_picker.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
@@ -60,9 +63,19 @@ public class MonitoringHistoryActivity extends AppCompatActivity {
     }
 
     private void updateLabel() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
+        String myFormat = "dd/MM/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         date_picker.setText(sdf.format(myCalendar.getTime()));
+
+//        Bundle bundle = new Bundle();
+//        bundle.putString("date", sdf.format(myCalendar.getTime()));
+//        ListMonitoringFragment fragobj = new ListMonitoringFragment();
+//        fragobj.setArguments(bundle);
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_list_monitoring,fragobj).addToBackStack(null).commit();
+            ListMonitoringFragment fragobj = new ListMonitoringFragment();
+
+            fragobj.UpdateList(sdf.format(myCalendar.getTime()));
+
     }
 
     //BUTTON REFRESH DATA

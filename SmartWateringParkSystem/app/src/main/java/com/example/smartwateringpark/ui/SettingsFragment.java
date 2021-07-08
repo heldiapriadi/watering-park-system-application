@@ -18,7 +18,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.smartwateringpark.MonitoringHistoryActivity;
 import com.example.smartwateringpark.R;
 import com.example.smartwateringpark.SizeWaterStorageActivity;
-import com.example.smartwateringpark.data.SettingsData;
 import com.example.smartwateringpark.database.Setting;
 import com.example.smartwateringpark.model.AntaresSetting;
 import com.example.smartwateringpark.model.ReportViewModel;
