@@ -30,7 +30,7 @@ public class ReportsData {
             "1625194800000",
             "1625198400000",
             "1625202000000",
-            "1625205600000",
+            "1625742361000",
     };
 
     private static int[] nilaiKelembaban = {

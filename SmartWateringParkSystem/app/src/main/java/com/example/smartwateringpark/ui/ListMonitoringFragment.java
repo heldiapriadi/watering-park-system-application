@@ -28,32 +28,24 @@ public class ListMonitoringFragment extends Fragment {
     final Calendar myCalendar = Calendar.getInstance();
     private RecyclerView recyclerview;
     private ReportViewModel mReportViewModel;
-    long millis;
+    private String millis;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_monitoring, container, false);
         recyclerview = (RecyclerView) view.findViewById(R.id.recyclerView);
         mReportViewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication())).get(ReportViewModel.class);
-
-        if(getArguments() != null){
-            String myDate = getArguments().getString("date");
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
-            Date date = null;
-            try {
-                date = sdf.parse(myDate);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-             millis = date.getTime();
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+           millis = bundle.getString("date", "01/07/21");
         }
+
         String myFormat = "dd/MM/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-        UpdateList(sdf.format(myCalendar.getTime()));
+        UpdateList(millis);
 
         return view;
     }
-
 
     public void UpdateList(String date) {
         try {
@@ -69,7 +61,6 @@ public class ListMonitoringFragment extends Fragment {
             Log.d("TESTTT",String.valueOf(fromDate));
             Log.d("TESTTT",String.valueOf(toDate));
 
-            if (mReportViewModel.getAllReports().getValue() != null)
             mReportViewModel.getAllFilterReports(fromDate,toDate).observe(getViewLifecycleOwner(), reports -> {
                 // Update the cached copy of the words in the adapter.
                 if (reports == null){

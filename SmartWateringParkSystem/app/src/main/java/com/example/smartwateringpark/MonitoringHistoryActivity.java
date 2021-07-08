@@ -1,6 +1,7 @@
 package com.example.smartwateringpark;
 
 import android.app.DatePickerDialog;
+import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,7 +14,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 
 import com.example.smartwateringpark.ui.ListMonitoringFragment;
 
@@ -26,7 +30,7 @@ public class MonitoringHistoryActivity extends AppCompatActivity {
 
     final Calendar myCalendar = Calendar.getInstance();
     TextView date_picker;
-    FragmentContainerView fragmentListMonitoring;
+//    FragmentContainerView fragmentListMonitoring;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +77,7 @@ public class MonitoringHistoryActivity extends AppCompatActivity {
 //        fragobj.setArguments(bundle);
 //        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_list_monitoring,fragobj).addToBackStack(null).commit();
             ListMonitoringFragment fragobj = new ListMonitoringFragment();
-
-            fragobj.UpdateList(sdf.format(myCalendar.getTime()));
+            loadFragment(fragobj);
 
     }
 
@@ -95,5 +98,22 @@ public class MonitoringHistoryActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void loadFragment(Fragment fragment){
+        Bundle arguments = new Bundle();
+        String myFormat = "dd/MM/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        arguments.putString("date",sdf.format(myCalendar.getTime()) );
+        fragment.setArguments(arguments);
+        // create a FragmentManager
+        FragmentManager fm = getSupportFragmentManager();
+// create a FragmentTransaction to begin the transaction and replace the Fragment
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+// replace the FrameLayout with new Fragment
+        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.commit(); // save the changes
+
+
     }
 }

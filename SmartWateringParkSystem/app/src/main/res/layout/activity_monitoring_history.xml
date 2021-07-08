@@ -81,12 +81,17 @@
             android:textAlignment="center"
             android:textSize="20sp" />
 
-        <fragment
-            android:id="@+id/fragment_list_monitoring"
+<!--        <fragment-->
+<!--            android:id="@+id/fragment_list_monitoring"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginTop="200dp"-->
+<!--            android:name="com.example.smartwateringpark.ui.ListMonitoringFragment"-->
+<!--            />-->
+        <FrameLayout
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="200dp"
-            android:name="com.example.smartwateringpark.ui.ListMonitoringFragment"
-            />
+            android:layout_marginTop="200dp" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
