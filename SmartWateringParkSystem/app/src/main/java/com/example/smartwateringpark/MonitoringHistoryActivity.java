@@ -17,17 +17,33 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 
+import com.example.smartwateringpark.database.Converters;
+import com.example.smartwateringpark.database.Report;
+import com.example.smartwateringpark.database.Setting;
+import com.example.smartwateringpark.model.AntaresSetting;
+import com.example.smartwateringpark.model.ReportViewModel;
+import com.example.smartwateringpark.model.SettingViewModel;
 import com.example.smartwateringpark.ui.ListMonitoringFragment;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import id.co.telkom.iot.AntaresHTTPAPI;
+import id.co.telkom.iot.AntaresResponse;
 
-public class MonitoringHistoryActivity extends AppCompatActivity {
 
+public class MonitoringHistoryActivity extends AppCompatActivity implements AntaresHTTPAPI.OnResponseListener  {
+    private AntaresHTTPAPI antaresAPIHTTP;
+    private String dataDevice;
+    private SettingViewModel settingViewModel;
+    private ReportViewModel reportViewModel;
     final Calendar myCalendar = Calendar.getInstance();
     TextView date_picker;
 //    FragmentContainerView fragmentListMonitoring;
@@ -37,6 +53,9 @@ public class MonitoringHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monitoring_history);
         date_picker = findViewById(R.id.date_picker);
+        reportViewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(ReportViewModel.class);
+        settingViewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(SettingViewModel.class);
+
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -93,7 +112,11 @@ public class MonitoringHistoryActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.refresh_menu:
-                Toast.makeText(this, "Refresh Selected",Toast.LENGTH_SHORT).show();
+                    antaresAPIHTTP = new AntaresHTTPAPI();
+                    antaresAPIHTTP.addListener(this);
+                    antaresAPIHTTP.getLatestDataofDevice(AntaresSetting.accessKey,AntaresSetting.porjectName,AntaresSetting.devineName[0]);
+                    antaresAPIHTTP.getLatestDataofDevice(AntaresSetting.accessKey,AntaresSetting.porjectName,AntaresSetting.devineName[1]);
+//                Toast.makeText(this, "Refresh Selected",Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -115,5 +138,35 @@ public class MonitoringHistoryActivity extends AppCompatActivity {
         fragmentTransaction.commit(); // save the changes
 
 
+    }
+
+    @Override
+    public void onResponse(AntaresResponse antaresResponse) {
+        if(antaresResponse.getRequestCode()==0){
+            try {
+                JSONObject body = new JSONObject(antaresResponse.getBody());
+                dataDevice = body.getJSONObject("m2m:cin").getString("con");
+                JSONObject obj = new JSONObject(dataDevice);
+
+                try {
+                    String timeStamp = obj.getString("timestamp") + "000";
+                    int nilaiKelembapanTanah = obj.getInt("nilaiKelembabanTanah");
+                    float volumeAirTerpakai = (float)obj.getDouble("volumeAirTerpakai");
+
+                    Report report = new Report(Converters.toDate(Long.valueOf(timeStamp)),nilaiKelembapanTanah,volumeAirTerpakai);
+                    reportViewModel.insert(report);
+
+                    finish();
+                    overridePendingTransition( 0, 0);
+                    startActivity(getIntent());
+                    overridePendingTransition( 0, 0);
+                }catch (Exception e){
+                    float totalAirTandon = (float) obj.getDouble("totalAirTandon");
+                    settingViewModel.update(new Setting("totalAirTandon",totalAirTandon));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

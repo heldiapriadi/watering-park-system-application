@@ -39,7 +39,7 @@ public class RecycleviewAdapter extends RecyclerView.Adapter<RecycleviewAdapter.
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
         String strDate = formatter.format(mData.get(position).getTimeStamp());
         holder.tvJam.setText(strDate);
-        holder.tvSoilStatus.setText(String.valueOf(mData.get(position).getNilaiKelembabanTanah()));
+        holder.tvSoilStatus.setText(nilaiKelembabanToString(mData.get(position).getNilaiKelembabanTanah()));
         holder.tvWaterUsage.setText(String.valueOf(mData.get(position).getVolumeAirTerpakai()));
     }
 
@@ -60,6 +60,16 @@ public class RecycleviewAdapter extends RecyclerView.Adapter<RecycleviewAdapter.
             tvJam = (TextView) itemView.findViewById(R.id.tvJam);
             tvSoilStatus = (TextView) itemView.findViewById(R.id.tvSoilStatus);
             tvWaterUsage = (TextView)  itemView.findViewById(R.id.tvWaterUsage);
+        }
+    }
+
+    private String nilaiKelembabanToString(int nilaiKelembaban){
+        if (nilaiKelembaban < 300){
+            return "Basah";
+        }else if(nilaiKelembaban > 600){
+            return "Kering";
+        }else{
+            return "Lembab";
         }
     }
 }

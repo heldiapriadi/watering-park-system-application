@@ -42,7 +42,7 @@ public class SoilMonitoringFragment extends Fragment {
                 Log.d("TESTTT",String.valueOf(reports.size()));
                 if(report.getNilaiKelembabanTanah() < 300){
                     soilStatus.setText("Basah");
-                }else if(report.getNilaiKelembabanTanah() > 900){
+                }else if(report.getNilaiKelembabanTanah() > 600 ){
                     soilStatus.setText("Kering");
                 }else{
                     soilStatus.setText("Lembab");

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -73,7 +74,7 @@ public class SizeWaterStorageActivity extends AppCompatActivity implements Antar
 //                        setting = settingViewModel.getAllSettings().getValue();
                 sendDataSetting(settingViewModel.getAllSettings().getValue().get(0).getValue(),Float.valueOf(highWaterStorage.getText().toString()),Float.valueOf(baseArea.getText().toString()),Float.valueOf(distance.getText().toString()));
 //                    SettingsData.getSetting().setPenyiramanOtomatis(1);
-
+                Toast.makeText(getApplicationContext(), "Data telah diubah",Toast.LENGTH_SHORT).show();
 //                Intent intent = getIntent();
 //                finish();
 //                startActivity(intent);
@@ -83,7 +84,6 @@ public class SizeWaterStorageActivity extends AppCompatActivity implements Antar
 
     @Override
     public void onResponse(AntaresResponse antaresResponse) {
-
     }
 
     private void sendDataSetting(float penyiramanOtomatis, float tinggiTandon, float luasPermukaan, float jarakSensor){

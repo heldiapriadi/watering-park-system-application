@@ -32,7 +32,13 @@ public class WaterStorageFragment extends Fragment {
             float sisaTotalAirTandon = settings.get(4).getValue();
             float volumeAir = (sisaTotalAirTandon / ((settings.get(1).getValue() * settings.get(2).getValue()) / 1000)) * 100;
 
-            waterStatus.setText(String.valueOf(volumeAir).substring(0,4)+"%");
+            if (volumeAir < 0){
+                waterStatus.setText("0%");
+            }else{
+                waterStatus.setText(String.valueOf(volumeAir).substring(0,4)+"%");
+            }
+
+
         });
 
 //        float volumeTandon = setting.getTinggiTandon() * setting.getLuasPermukaan();

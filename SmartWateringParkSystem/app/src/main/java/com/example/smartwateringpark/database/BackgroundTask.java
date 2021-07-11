@@ -52,7 +52,6 @@ public class BackgroundTask extends Worker implements AntaresHTTPAPI.OnResponseL
         TAG = 1;
         antaresAPIHTTP.getLatestDataofDevice(AntaresSetting.accessKey,AntaresSetting.porjectName,AntaresSetting.devineName[0]);
         antaresAPIHTTP.getLatestDataofDevice(AntaresSetting.accessKey,AntaresSetting.porjectName,AntaresSetting.devineName[1]);
-        Log.d("TESTTT","MASOK");
 
         return Result.success();
     }
@@ -85,4 +84,5 @@ public class BackgroundTask extends Worker implements AntaresHTTPAPI.OnResponseL
             }
         }
     }
+    
 }
