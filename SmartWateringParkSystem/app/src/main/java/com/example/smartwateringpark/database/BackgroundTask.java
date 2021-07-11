@@ -52,6 +52,7 @@ public class BackgroundTask extends Worker implements AntaresHTTPAPI.OnResponseL
         TAG = 1;
         antaresAPIHTTP.getLatestDataofDevice(AntaresSetting.accessKey,AntaresSetting.porjectName,AntaresSetting.devineName[0]);
         antaresAPIHTTP.getLatestDataofDevice(AntaresSetting.accessKey,AntaresSetting.porjectName,AntaresSetting.devineName[1]);
+        antaresAPIHTTP.getLatestDataofDevice(AntaresSetting.accessKey,AntaresSetting.porjectName,AntaresSetting.devineName[2]);
 
         return Result.success();
     }
@@ -77,6 +78,17 @@ public class BackgroundTask extends Worker implements AntaresHTTPAPI.OnResponseL
                 }catch (Exception e){
                     float totalAirTandon = (float) obj.getDouble("totalAirTandon");
                     settingDao.update(new Setting("totalAirTandon",totalAirTandon));
+
+                    try{
+                        float luasPermukaan = (float) obj.getDouble("luasPermukaan");
+                        float tinggiTandon = (float) obj.getDouble("tinggiTandon");
+                        float jarakSensor = (float) obj.getDouble("jarakSensor");
+                        settingDao.update(new Setting("luasPermukaan",luasPermukaan));
+                        settingDao.update(new Setting("tinggiTandon",tinggiTandon));
+                        settingDao.update(new Setting("jarakSensor",jarakSensor));
+                    }catch (Exception ex){
+
+                    }
                     Log.d("TESTTT","DATA 2");
                 }
             } catch (JSONException e) {
