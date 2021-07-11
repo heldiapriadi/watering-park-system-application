@@ -156,10 +156,10 @@ public class MonitoringHistoryActivity extends AppCompatActivity implements Anta
                     Report report = new Report(Converters.toDate(Long.valueOf(timeStamp)),nilaiKelembapanTanah,volumeAirTerpakai);
                     reportViewModel.insert(report);
 
-                    finish();
-                    overridePendingTransition( 0, 0);
-                    startActivity(getIntent());
-                    overridePendingTransition( 0, 0);
+//                    finish();
+//                    overridePendingTransition( 0, 0);
+//                    startActivity(getIntent());
+//                    overridePendingTransition( 0, 0);
                 }catch (Exception e){
                     float totalAirTandon = (float) obj.getDouble("totalAirTandon");
                     settingViewModel.update(new Setting("totalAirTandon",totalAirTandon));
