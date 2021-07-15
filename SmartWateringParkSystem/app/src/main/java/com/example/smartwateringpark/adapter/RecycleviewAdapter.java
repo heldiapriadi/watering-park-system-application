@@ -64,9 +64,9 @@ public class RecycleviewAdapter extends RecyclerView.Adapter<RecycleviewAdapter.
     }
 
     private String nilaiKelembabanToString(int nilaiKelembaban){
-        if (nilaiKelembaban < 300){
+        if (nilaiKelembaban < 339){
             return "Basah";
-        }else if(nilaiKelembaban > 600){
+        }else if(nilaiKelembaban > 476){
             return "Kering";
         }else{
             return "Lembab";
