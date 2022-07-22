@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_monitoring_history"
+    tools:context=".MonitoringHistoryActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/partial_rounded_background_yellow"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="Search By:"
+            android:fontFamily="@font/marcellus_sc"
+            android:textSize="20sp"
+            android:textColor="@color/black"/>
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/partial_rounded_background_green"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="83dp"
+            android:layout_marginLeft="55dp"
+            android:text="Date :"
+            android:textSize="20sp"
+            android:fontFamily="@font/marcellus_sc"
+            android:textColor="@color/white"/>
+
+        <View
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="130dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/partial_rounded_background_greenshadow"/>
+
+        <TextView
+            android:id="@+id/date_picker"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="83dp"
+            android:editable="true"
+            android:fontFamily="@font/marcellus_sc"
+            android:gravity="center_horizontal"
+            android:text="30/04/2021"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="160dp"
+            android:fontFamily="@font/marcellus_sc"
+            android:text="Result :"
+            android:textColor="@color/black"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+<!--        <fragment-->
+<!--            android:id="@+id/fragment_list_monitoring"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginTop="200dp"-->
+<!--            android:name="com.example.smartwateringpark.ui.ListMonitoringFragment"-->
+<!--            />-->
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="200dp" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

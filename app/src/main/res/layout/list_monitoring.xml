@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:elevation="4dp"
+    app:cardUseCompatPadding="true"
+    android:id="@+id/list_history"
+    android:background="@drawable/rounded_background_yellow">
+    
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:background="@drawable/partial_rounded_background_brown"/>
+
+            <TextView
+                android:id="@+id/tvJam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:layout_marginLeft="17dp"
+                android:text="07.00"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/days_one_regular"/>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="110dp"
+                android:src="@drawable/sprout"/>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="110dp"
+                android:src="@drawable/toren_air"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:layout_marginLeft="160dp"
+                android:text="Soil Status    :"
+                android:fontFamily="@font/marcellus_sc"
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:layout_marginLeft="160dp"
+                android:text="Water Usage :"
+                android:fontFamily="@font/marcellus_sc"
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:layout_marginLeft="345dp"
+                android:text="L"
+                android:fontFamily="@font/marcellus_sc"
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
+
+            <!--            Untuk menampilkan data monitoring-->
+
+            <TextView
+                android:id="@+id/tvSoilStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:layout_marginLeft="300dp"
+                android:text="Moist"
+                android:fontFamily="@font/marcellus_sc"
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/tvWaterUsage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:layout_marginLeft="300dp"
+                android:text="0,5"
+                android:fontFamily="@font/marcellus_sc"
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
+        </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

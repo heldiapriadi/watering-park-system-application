@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Smart Watering Park System</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="creator">©A4Group™</string>
+    <string name="nav_soil_status">Soil Status</string>
+    <string name="nav_water_storage">Water Storage</string>
+    <string name="nav_setting">Settings</string>
+    <string name="soil_status"><b>Soil Status</b></string>
+    <string name="soil_moisture_status"><b>Soil Moisture Status</b></string>
+    <string name="size_water_storage">Size Water Storage</string>
+    <string name="_1_set_high_and_base_area">1. Set High And Base Area</string>
+    <string name="high_water_storage">High Water Storage</string>
+    <string name="base_area">Base Area</string>
+    <string name="_100">100</string>
+    <string name="cm2">cm2</string>
+    <string name="cm">cm</string>
+    <string name="add_to_system">Add To System</string>
+    <string name="_2_water_storage_volume">2. Water Storage Volume</string>
+    <string name="volume">Volume</string>
+    <string name="liter">liter</string>
+    <string name="distance_ultrasonic_to_base">Distance Ultrasonic to Base</string>
+</resources>
